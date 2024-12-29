@@ -1,7 +1,7 @@
 #include <xc.h>
 
-//Configurações
-#pragma config FOSC = XT        //XT = Cristal com frequência de 455Khz até 4Mhz
+//ConfiguraÃ§Ãµes
+#pragma config FOSC = XT        //XT = Cristal com frequÃªncia de 455Khz atÃ© 4Mhz
 #pragma config WDTE = OFF       //Watchdog timer desabilitado
 #pragma config PWRTE = OFF      //Power-up Timer desabilitado
 #pragma config MCLRE = ON       //Pino de reset habilitado
@@ -13,22 +13,22 @@
 //Valor do cristal = 4Mhz
 #define _XTAL_FREQ 4000000
 
-//Variáveis
+//VariÃ¡veis
                             /*0     1     2     3     4     5     6     7     8     9*/
 unsigned char display[10] = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x67};
 unsigned char segmento;
 int contador = 0;
 
 void main(){
-    TRISB = 0x00;       //Todos os pinos são saída
-    PORTB = 0x00;       //Todos os pinos em LOW
+    TRISB = 0x00;                                           //Todos os pinos sÃ£o saÃ­da
+    PORTB = 0x00;                                           //Todos os pinos em LOW
     
     while(1){
-        segmento = display[contador];                       //Varável "segmento" recebe o valor de "display"
-        PORTB = segmento;                                   //Valor de "segmento" é enviado para o PORTB e os pinos são ligados
+        segmento = display[contador];                       //VariÃ¡vel "segmento" recebe o valor de "display"
+        PORTB = segmento;                                   //Valor de "segmento" Ã© enviado para o PORTB e os pinos sÃ£o ligados
         
         __delay_ms(1000);
-        contador++;                                         //O valor de "contado" é incrementado toda vez que o looping é reiniciado
+        contador++;                                         //O valor de "contador" Ã© incrementado toda vez que o looping Ã© reiniciado
         
         contador = (contador > 0x09) ? 0x00 : contador;     //Se contador for maior que 9, retorna a 0. Do contrario continua sendo ele mesmo   
     }
